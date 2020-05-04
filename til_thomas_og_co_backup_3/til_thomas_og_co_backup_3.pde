@@ -16,8 +16,10 @@ button bback,
 
 
 void setup() {
-  fullScreen();
+  //fullScreen();
+  size(500,500);
   bg = loadImage("bg.jpg");
+  bg.resize(width,height);
   cursor = loadImage("cursor.png");
   flag = loadImage("flag.png");
 
@@ -144,11 +146,11 @@ public void mouseReleased() {
     } else if (b14.hover()) {
       screenNo = 5;
     } else if (b15.hover()) { 
-      screenNo = 10;
+      screenNo = 6;
     }
     /*
     if (screenNo == 2) {
-     
+     if(bback){} else if{
      }else if () {
      }*/
   }
