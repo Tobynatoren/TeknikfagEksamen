@@ -16,10 +16,9 @@ button bback,
 
 
 void setup() {
-  //fullScreen();
-  size(500,500);
+  fullScreen();
   bg = loadImage("bg.jpg");
-  bg.resize(width,height);
+  bg.resize(width, height);
   cursor = loadImage("cursor.png");
   flag = loadImage("flag.png");
 
@@ -54,8 +53,11 @@ void setup() {
   b15 = new button(width/2, 250, 100, 50, "Exit");
 
   // Knapper til sang valg - 2
-  b21 = new button(50, 50, 100, 50, "Sang1");
-  b22 = new button(50, 100, 100, 50, "Sang2");
+  b21 = new button(50, 50, 100, 50, "Mark Ronson - Uptown Funkt ft. Bruno Mars");
+  b22 = new button(50, 100, 100, 50, "The Jackson 5 - I Want You Back");
+
+
+  //Knapper til indstillinger
 
 
   // Knapper til profiler - 4
@@ -79,21 +81,31 @@ void setup() {
   b73 = new button(50, 50, 100, 50, "Svær");
   b74 = new button(50, 50, 100, 50, "Ekstrem");
   b75 = new button(50, 50, 100, 50, "Start");
-  b76 = new button(50, 50, 100, 50, "Tilbage");
 
-  // Knapper til Profiler - 8
 
-  // Knapper til Exit - 9
-  b91 = new button(50, 50, 100, 50, "Ja");
-  b92 = new button(50, 100, 100, 50, "Nej");
-
-  // Knapper til Hjælp - 10
-  b101 = new button(50, 50, 100, 50, "Tilbage");
+  // Knapper til pause - 9
+  b81 = new button(50, 50, 100, 50, "Fortsæt");
+  b82 = new button(100, 50, 100, 50, "Start for ny");
+  b83 = new button(150, 50, 100, 50, "Vælg ny sang");
+  b84 = new button(200, 50, 100, 50, "Til hovedmenu");
+  
+  // Knapper til GameOver - 10
+  b91 = new button(50, 50, 100, 50, "Prøv igen");
+  b92 = new button(100, 50, 100, 50, "Vælg ny sang");
+  b93 = new button(150, 50, 100, 50, "Til hovedmenu");
+  
+  // Knapper til Sang færdig - 11
+  b101 = new button(50, 50, 100, 50, "Vælg ny sang");
+  b101 = new button(100, 50, 100, 50, "Spil igen");
+  b101 = new button(150, 50, 100, 50, "Til hovedmenu");
+  
+  
+  
 }
 
 void draw() {
   background(bg);
-  
+
 
   if (screenNo == 1) {
     showmenu1();
@@ -124,6 +136,13 @@ void draw() {
     image(flag, width-90, height-90, 70, 70);
   } else if (screenNo == 10) {
 
+    if (drawTimestamp + 1000 < millis()) {
+      drawHighlight();
+    }
+    for (field f : fields) {
+      f.render();
+    }
+  } else if (screenNo == 11) { 
 
     if (drawTimestamp + 1000 < millis()) {
       drawHighlight();
@@ -148,17 +167,43 @@ public void mouseReleased() {
     } else if (b15.hover()) { 
       screenNo = 6;
     }
-    /*
-    if (screenNo == 2) {
-     if(bback){} else if{
-     }else if () {
-     }*/
+  } else if (screenNo == 2) {
+    if (bback.hover()) {
+      screenNo = 1;
+    } else if (b21.hover()) {
+      screenNo = 10;
+    } else if (b22.hover()) {
+      screenNo = 11;
+    }
+  } else if (screenNo == 3) {
+    if (bback.hover()) {
+      screenNo = 1;
+    }
+  } else if (screenNo == 4) {
+
+    if (bback.hover()) {
+      screenNo = 1;
+    }
+  } else if (screenNo == 5) {
+    if (bback.hover()) {
+      screenNo = 1;
+    }
+  } else if (screenNo == 6) {
+    if (b61.hover()) {
+      exit();
+    } else if (b62.hover()) {
+      screenNo = 1;
+    }
+  } else if (screenNo == 7) {
+  } else if (screenNo == 8) {
+  } else if (screenNo == 9) {
   }
 }
 
 
 
-public void showmenu1() {
+
+void showmenu1() {
   b11.render();
   b12.render();
   b13.render();
@@ -166,44 +211,44 @@ public void showmenu1() {
   b15.render();
 }
 
-public void showmenu2() {
+void showmenu2() {
   b21.render();
   b22.render();
   bback.render();
 }
 
-public void showmenu3() {
+void showmenu3() {
   bback.render();
 }
 
-public void showmenu4() {
+void showmenu4() {
   b41.render();
   b42.render();
   b43.render();
   bback.render();
 }
 
-public void showmenu5() {
+void showmenu5() {
   bback.render();
 }
 
-public void showmenu6() {
+void showmenu6() {
   b61.render();
   b62.render();
 }
 
-public void showmenu7() {
+void showmenu7() {
   b71.render();
   b72.render();
   b73.render();
   b74.render();
 }
 
-public void showmenu8() {
-  //b81.render();
-  //b82.render();
+void showmenu8() {
+  b81.render();
+  b82.render();
 }
 
-public void showmenu9() {
+void showmenu9() {
   b91.render();
 }
